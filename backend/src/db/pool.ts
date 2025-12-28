@@ -18,3 +18,15 @@ export const pool = new Pool({
       }
     : undefined,
 });
+
+// 🔥 TEST REAL DE CONEXIÓN AL ARRANCAR
+(async () => {
+  try {
+    const client = await pool.connect();
+    console.log("🟢 PostgreSQL conectado correctamente");
+    client.release();
+  } catch (error) {
+    console.error("🔴 Error conectando a PostgreSQL:", error);
+    process.exit(1); // Mata la app si no hay DB (opcional pero recomendado)
+  }
+})();
