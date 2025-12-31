@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { pool } from "../db/pool";
 
-export async function createKpi(req: Request, res: Response) {
+export async function createRecord(req: Request, res: Response) {
   try {
     const {
       date,
@@ -31,7 +31,7 @@ export async function createKpi(req: Request, res: Response) {
     ) {
       return res.status(400).json({
         ok: false,
-        error: "Campos obligatorios faltantes",
+        error: "Missing required fields",
       });
     }
 
@@ -88,10 +88,10 @@ export async function createKpi(req: Request, res: Response) {
       record: result.rows[0],
     });
   } catch (error) {
-    console.error("CREATE KPI ERROR:", error);
+    console.error("CREATE RECORD ERROR:", error);
     return res.status(500).json({
       ok: false,
-      error: "Error guardando KPI",
+      error: "Error creating record",
     });
   }
 }

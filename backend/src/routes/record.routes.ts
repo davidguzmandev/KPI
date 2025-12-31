@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { createKpi } from "../controllers/kpi.controller";
+import { createRecord } from "../controllers/record.controller";
 import { requireAuth } from "../middlewares/auth.middleware";
 
 const router = Router();
 
 // POST /api/kpi
-router.post("/", requireAuth, createKpi);
+router.post("/", requireAuth, createRecord);
 
 export default router;
